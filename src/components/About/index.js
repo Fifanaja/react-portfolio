@@ -16,10 +16,15 @@ const About = () => {
   const [letterClass, setLetterClass] = useState('text-animate')
 
   useEffect(() => {
-    return setTimeout(() => {
-      setLetterClass('text-animate-hover')
-    }, 3000)
-  }, [])
+    // ประกาศตัวแปร timeoutId
+    const timeoutId = setTimeout(() => {
+      setLetterClass('text-animate-hover');
+    }, 3000);
+  
+    // ทำการ clean-up เมื่อ component ถูก unmount
+    return () => clearTimeout(timeoutId);
+  }, []);
+  
 
   return (
     <>

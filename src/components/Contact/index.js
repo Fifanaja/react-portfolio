@@ -11,10 +11,15 @@ const Contact = () => {
   const form = useRef()
 
   useEffect(() => {
-    return setTimeout(() => {
-      setLetterClass('text-animate-hover')
-    }, 3000)
-  }, [])
+    // ประกาศตัวแปร timeoutId
+    const timeoutId = setTimeout(() => {
+      setLetterClass('text-animate-hover');
+    }, 3000);
+  
+    // ทำการ clean-up เมื่อ component ถูก unmount
+    return () => clearTimeout(timeoutId);
+  }, []);
+  
 
   const sendEmail = (e) => {
     e.preventDefault()

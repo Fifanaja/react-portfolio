@@ -29,10 +29,15 @@ const Home = () => {
   
 
   useEffect(() => {
-    return setTimeout(() => {
-      setLetterClass('text-animate-hover')
-    }, 4000)
-  }, [])
+    // ประกาศตัวแปร timeoutId
+    const timeoutId = setTimeout(() => {
+      setLetterClass('text-animate-hover');
+    }, 3000);
+  
+    // ทำการ clean-up เมื่อ component ถูก unmount
+    return () => clearTimeout(timeoutId);
+  }, []);
+  
 
   return (
     <>
